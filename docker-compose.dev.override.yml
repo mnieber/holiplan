@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  backend:
+    volumes:
+      - $HOME/.config/pudb:/root/.config/pudb
+      - /opt/projects/holiplan/backend/assets:/app/assets
+      - /opt/projects/holiplan/backend/dumps:/app/dumps
+      - /opt/projects/holiplan/backend/fish_history:/root/.local/share/fish/fish_history
+      - /opt/projects/holiplan/backend/ipython:/root/.ipython
+      - /opt/projects/holiplan/backend/log:/app/log
+      - /opt/projects/holiplan/backend/media:/app/media
+      - /opt/projects/holiplan/backend/pytest_report.html:/app/pytest_report.html
+      - /opt/projects/holiplan/backend/static:/app/static

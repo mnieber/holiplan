@@ -1,0 +1,7 @@
+-r base.txt
+
+faker
+pytest
+pytest-django
+pytest-html
+pytest-mock
