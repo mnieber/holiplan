@@ -14,10 +14,6 @@ I have a code-generator (called Moonleap, this is not an AI, but an advanced ska
 
 ### T2: Create a "plans" Django module
 
-I used to believe that strings in django had to be limited to a certain number of chars for better performance, but recently I read arguments against doing this (e.g. see https://www.postgresql.org/docs/9.0/datatype-character.html). Therefore, I will use TextField instead of CharField for string fields.
-
-To allow users to retrieve a stored plan, the frontend will pass them the plan id. It feels a bit weird to give out a database record id to a user, but in this case, I think it's an acceptable solution.
-
 ### T3: Create a "destinations" Django module
 
 This module will have the Destination django model. I'm assuming that Google Maps place ids are used to unambiguously represent places. The backend will store both the place id and the lat/long (that it receives from the frontend).
@@ -31,6 +27,8 @@ Since the frontend is always showing the latest weather forecasts, they are not 
 ## Things I didn't implement / TODO's
 
 ### Showing TextField in the Django admin
+
+I used to believe that strings in django had to be limited to a certain number of chars for better performance, but recently I read arguments against doing this (e.g. see https://www.postgresql.org/docs/9.0/datatype-character.html). Therefore, I will use TextField instead of CharField for string fields.
 
 Since I'm using TextField instead of CharField, the text fields in the admin are too big. This should be fixed, ideally in a way that doesn't bloat the code.
 
@@ -53,14 +51,12 @@ I placed all urls in api/urls.py. If this file gets too big, I would split it up
 ### Exclude "personal" files such as docker-compose.dev.override.yml from the repo
 
 I included the docker-compose.dev.override.yml file to show how I map directories to the host computer. Normally, this file would not be included in the repo. Similarly, I left in the vandelay-py.js file (that contains a hard-coded path).
+I also committed some files that are supposed to stay outside of git (i.e. ` dev.injected.env`), for convenience
+(this files are created when `make compile-env` is run).
 
 ### Use GET for the weather endpoint
 
 The weather endpoint currently uses POST so that it's easy to pass JSON data to the endpoint. But afaik a GET endpoint can also receive data. I should rewrite the /weather endpoint so that it uses GET.
-
-### Consider using APIClient from rest_framework.test
-
-I used the regular test client from django.test, but using APIClient from rest_framework.test might be a bit less verbose.
 
 ### Fix warning
 
